@@ -492,3 +492,47 @@ test('init with vscode-copilot skips merge when settings.json has invalid JSON',
     await rm(tempDir, { recursive: true, force: true });
   }
 });
+
+test('init with cursor IDE creates .cursor/rules/opensquad.mdc', async () => {
+  const tempDir = await mkdtemp(join(tmpdir(), 'opensquad-test-'));
+  try {
+    await init(tempDir, { _skipPrompts: true, _ides: ['cursor'] });
+
+    const content = await readFile(
+      join(tempDir, '.cursor', 'rules', 'opensquad.mdc'),
+      'utf-8'
+    );
+    assert.ok(content.includes('alwaysApply: true'));
+    assert.ok(content.includes('opensquad'));
+    assert.ok(content.includes('/opensquad'));
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('init with cursor IDE creates .cursor/mcp.json with playwright server', async () => {
+  const tempDir = await mkdtemp(join(tmpdir(), 'opensquad-test-'));
+  try {
+    await init(tempDir, { _skipPrompts: true, _ides: ['cursor'] });
+
+    const content = await readFile(join(tempDir, '.cursor', 'mcp.json'), 'utf-8');
+    const config = JSON.parse(content);
+    assert.ok(config.mcpServers?.playwright, 'playwright server missing');
+    assert.ok(config.mcpServers.playwright.args.includes('--config'));
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('init with cursor IDE creates .cursorignore with browser profile exclusion', async () => {
+  const tempDir = await mkdtemp(join(tmpdir(), 'opensquad-test-'));
+  try {
+    await init(tempDir, { _skipPrompts: true, _ides: ['cursor'] });
+
+    const content = await readFile(join(tempDir, '.cursorignore'), 'utf-8');
+    assert.ok(content.includes('_opensquad/_browser_profile/'));
+    assert.ok(content.includes('node_modules/'));
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
+});
