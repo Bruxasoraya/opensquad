@@ -1,0 +1,13 @@
+{
+  "squad": "facebook-ads-roteiros",
+  "status": "completed",
+  "step": { "current": 9, "total": 9, "label": "Aprovação Final" },
+  "agents": [
+    { "id": "researcher", "name": "Rafa Referência", "icon": "🔍", "status": "done", "deliverTo": null, "desk": { "col": 1, "row": 1 } },
+    { "id": "scriptwriter", "name": "Gabi Gancho", "icon": "✍️", "status": "done", "deliverTo": null, "desk": { "col": 2, "row": 1 } },
+    { "id": "reviewer", "name": "Vera Veredito", "icon": "✅", "status": "done", "deliverTo": null, "desk": { "col": 3, "row": 1 } }
+  ],
+  "handoff": null,
+  "startedAt": "2026-03-24T15:23:34-03:00",
+  "updatedAt": "2026-03-24T15:36:00-03:00"
+}

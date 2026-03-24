@@ -1,0 +1,68 @@
+name: "Facebook Ads Roteiros"
+code: facebook-ads-roteiros
+description: "Squad de produção semanal de 15 roteiros de vídeo para Facebook Ads — 3 roteiros por categoria (Tarot, Trabalhos Amorosos, Benzimento Segunda, App, Benzimento Diário). Entrega toda terça às 15h em pastas datadas e separadas por categoria."
+icon: "🎬"
+version: "1.0.0"
+performance_mode: alta-performance
+created: "2026-03-24"
+
+categories:
+  - id: tarot-perguntas
+    name: "Tarot — Perguntas"
+    landing_page: "https://atendimento.bruxasorayatarot.com.br/tarot"
+    scripts_per_run: 3
+    frequency: semanal
+
+  - id: trabalhos-amorosos
+    name: "Trabalhos Amorosos"
+    landing_page: "https://instagram.com/bruxasorayatarot"
+    scripts_per_run: 3
+    frequency: semanal
+
+  - id: benzimento-segunda
+    name: "Benzimento Amoroso (Segunda)"
+    landing_page: "https://benzimento.bruxasorayatarot.com.br"
+    scripts_per_run: 3
+    frequency: "segunda-feira only"
+
+  - id: app
+    name: "Aplicativo"
+    landing_page: "https://app.bruxasorayatarot.com.br"
+    scripts_per_run: 3
+    frequency: semanal
+
+  - id: benzimento-diario
+    name: "Benzimento Amoroso (Conscientização)"
+    landing_page: "https://t.me/magiasdabruxasoraya"
+    scripts_per_run: 3
+    frequency: diário
+
+agents:
+  - id: researcher
+    name: "Rafa Referência"
+    file: ./agents/researcher.agent.md
+
+  - id: scriptwriter
+    name: "Gabi Gancho"
+    file: ./agents/scriptwriter.agent.md
+
+  - id: reviewer
+    name: "Vera Veredito"
+    file: ./agents/reviewer.agent.md
+
+pipeline:
+  file: ./pipeline/pipeline.yaml
+  steps: 9
+  checkpoints: 5
+
+skills:
+  - web_search
+  - web_fetch
+
+data:
+  - pipeline/data/research-brief.md
+  - pipeline/data/domain-framework.md
+  - pipeline/data/quality-criteria.md
+  - pipeline/data/output-examples.md
+  - pipeline/data/anti-patterns.md
+  - pipeline/data/tone-of-voice.md

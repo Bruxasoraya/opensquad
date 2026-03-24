@@ -1,0 +1,66 @@
+name: "Facebook Ads Roteiros Pipeline"
+squad: facebook-ads-roteiros
+version: "1.0.0"
+performance_mode: alta-performance
+
+steps:
+  - id: step-01
+    name: "Foco da Pesquisa"
+    file: steps/step-01-research-focus.md
+    type: checkpoint
+
+  - id: step-02
+    name: "Pesquisa de Tendências"
+    file: steps/step-02-research.md
+    agent: researcher
+    execution: subagent
+
+  - id: step-03
+    name: "Direção Semanal"
+    file: steps/step-03-weekly-direction.md
+    type: checkpoint
+
+  - id: step-04
+    name: "Geração de Hooks"
+    file: steps/step-04-generate-hooks.md
+    agent: scriptwriter
+    execution: inline
+
+  - id: step-05
+    name: "Seleção de Hooks"
+    file: steps/step-05-select-hooks.md
+    type: checkpoint
+
+  - id: step-06
+    name: "Escrita e Otimização de Roteiros"
+    file: steps/step-06-write-scripts.md
+    agent: scriptwriter
+    execution: inline
+
+  - id: step-07
+    name: "Aprovação de Conteúdo"
+    file: steps/step-07-approve-content.md
+    type: checkpoint
+
+  - id: step-08
+    name: "Revisão de Qualidade"
+    file: steps/step-08-review.md
+    agent: reviewer
+    execution: inline
+
+  - id: step-09
+    name: "Aprovação Final"
+    file: steps/step-09-final-approval.md
+    type: checkpoint
+
+checkpoints:
+  - step-01
+  - step-03
+  - step-05
+  - step-07
+  - step-09
+
+on_reject:
+  step-09:
+    goto: step-06
+    reason: "Reviewer found issues — loop back to scriptwriter for revision"

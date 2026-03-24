@@ -1,0 +1,4 @@
+id,name,title,icon,path,execution
+researcher,Rafa Referência,Pesquisadora de Tendências,🔍,./agents/researcher.agent.md,subagent
+scriptwriter,Gabi Gancho,Roteirista de Anúncios,✍️,./agents/scriptwriter.agent.md,inline
+reviewer,Vera Veredito,Revisora de Qualidade,✅,./agents/reviewer.agent.md,inline
